@@ -4,7 +4,7 @@ import * as cocktailApi from '../api'
 import { cocktailConfig } from '..'
 
 export const useCocktailStore = defineStore('user', () => {
-  const cocktails: { [K in cocktailConfig.CocktailCode]: string } = ref({})
+  const cocktails = ref<{ [K in cocktailConfig.CocktailCode]?: string }>({})
 
   async function getCocktailDetail(input: cocktailApi.GetCocktailDetailInput) {
     return await cocktailApi.getCocktailDetail(input)

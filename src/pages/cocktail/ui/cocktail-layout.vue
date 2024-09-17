@@ -36,7 +36,9 @@ import CocktailsMenu from './cocktail-menu.vue'
     height: 100vh;
     min-width: 250px;
     padding: 40px;
-    transform: rotate(2deg);
+    transform: rotate(1deg);
+    border-radius: 4px;
+    box-shadow: 5px 0 13px 1px rgb(34 60 80 / 7%);
   }
 
   &__nav {
@@ -47,7 +49,6 @@ import CocktailsMenu from './cocktail-menu.vue'
     width: 100%;
     height: 100vh;
     padding: 40px;
-    background: url('#shared/assets/images/bg.jpg');
   }
 }
 </style>

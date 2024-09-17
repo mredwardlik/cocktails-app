@@ -29,6 +29,7 @@ module.exports = [
       '.lintstagedrc.cjs',
       '.prettierrc.cjs',
       '.stylelintrc.cjs',
+      'types.d.ts',
     ],
   },
 ]

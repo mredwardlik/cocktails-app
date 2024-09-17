@@ -34,7 +34,7 @@ export default [
     ],
   },
   {
-    path: '/:any(.*)',
+    path: '/:catchAll(.*)*',
     name: 'not-found',
     component: NotFoundPage,
   },

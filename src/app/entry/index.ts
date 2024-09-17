@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import { initPinia, initVueRouter, initPrimevue } from '#shared/config/plugins'
+import { initPinia, initVueRouter } from '#shared/config/plugins'
 import App from '../index.vue'
 import routes from '../routes'
 
@@ -15,6 +15,5 @@ initVueRouter(app, {
   routes,
 })
 initPinia(app)
-initPrimevue(app)
 
 app.mount('#app')
