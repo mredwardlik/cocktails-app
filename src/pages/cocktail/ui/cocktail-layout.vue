@@ -22,13 +22,14 @@ import CocktailsMenu from './cocktail-menu.vue'
 <style lang="scss" scoped>
 .cocktail-layout {
   display: flex;
+  background-color: white;
 
   &__header {
     padding: 10px 0;
-    background-color: black;
     border-radius: 4px;
     text-align: center;
     color: white;
+    background-color: black;
     transform: rotate(-3deg);
   }
 
@@ -37,6 +38,7 @@ import CocktailsMenu from './cocktail-menu.vue'
     min-width: 250px;
     padding: 40px;
     transform: rotate(1deg);
+    background-color: white;
     border-radius: 4px;
     box-shadow: 5px 0 13px 1px rgb(34 60 80 / 7%);
   }
@@ -48,7 +50,27 @@ import CocktailsMenu from './cocktail-menu.vue'
   &__main {
     width: 100%;
     height: 100vh;
-    padding: 40px;
+  }
+}
+
+@media (width <= 928px) {
+  .cocktail-layout {
+    &__sidebar {
+      position: absolute;
+      max-width: 100%;
+      margin-left: -210px;
+      transition: 0.1s ease-in-out;
+      z-index: 100;
+      border-right: 10px solid black;
+
+      &:hover {
+        margin-left: 0;
+      }
+    }
+
+    &__main {
+      margin-left: 40px;
+    }
   }
 }
 </style>

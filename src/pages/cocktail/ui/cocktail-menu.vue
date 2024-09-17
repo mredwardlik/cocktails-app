@@ -1,8 +1,8 @@
 <template>
   <ul class="cocktail-menu">
     <li
-      v-for="(cocktailCode, i) in cocktailConfig.cocktailCodes"
-      :key="i"
+      v-for="(cocktailCode, index) in cocktailConfig.cocktailCodes"
+      :key="index"
       class="cocktail-menu__item"
     >
       <router-link
@@ -10,7 +10,7 @@
         class="cocktail-menu__link"
         :to="{ name: 'cocktail', params: { code: cocktailCode } }"
       >
-        {{ cocktailConfig.cocktailCodeNames[i] }}
+        {{ cocktailConfig.cocktailCodeNames[index] }}
       </router-link>
     </li>
   </ul>

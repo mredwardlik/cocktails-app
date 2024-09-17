@@ -18,11 +18,11 @@
         <ul>
           <li
             v-for="(
-              [ingredient, measure], i
+              [ingredient, measure], index
             ) in cocktailLib.extractIngredientsAndMeasuresFromCocktailDetail(
               cocktailDetail!,
             )"
-            :key="i"
+            :key="index"
           >
             <span>{{ ingredient }}</span>
             <span v-if="measure">{{ ': ' + measure }}</span>
@@ -41,26 +41,26 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onBeforeMount } from 'vue'
+import { ref, onBeforeMount, computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { cocktailConfig, cocktailLib, cocktailApi } from '#entities/cocktail'
+import { cocktailConfig, cocktailLib, cocktailModel } from '#entities/cocktail'
 
 const route = useRoute()
 const loading = ref(false)
 
+const cocktailStore = cocktailModel.useCocktailStore()
 const cocktailCode = route.params.code as cocktailConfig.CocktailCode
-const cocktailDetail = ref<cocktailConfig.CocktailDetail | null>(null)
+const cocktailDetail = computed(() => {
+  if (cocktailCode in cocktailStore.cocktails)
+    return cocktailStore.cocktails[cocktailCode]
+  return null
+})
 
 onBeforeMount(async () => {
   loading.value = true
-  await cocktailApi
-    .getCocktailDetail({ cocktailCode })
-    .then((response) => {
-      cocktailDetail.value = response.data.drinks[0]
-    })
-    .finally(() => {
-      loading.value = false
-    })
+  await cocktailStore.getCocktailDetail({ cocktailCode }).finally(() => {
+    loading.value = false
+  })
 })
 </script>
 
@@ -71,8 +71,9 @@ onBeforeMount(async () => {
   width: 100%;
   height: 100%;
   gap: 16px;
-  padding: 20px 30px;
+  padding: 40px 50px;
   font-size: small;
+  overflow: auto;
 
   .cocktail-detail {
     &__container {
@@ -95,13 +96,27 @@ onBeforeMount(async () => {
   }
 
   .cocktail-thumb {
-    width: 200px;
-    height: 200px;
+    max-width: 300px;
+    height: 300px;
+    object-fit: contain;
     border-radius: 8px;
   }
 }
 
 .loading {
   padding: 20px 30px;
+}
+
+@media (width <= 928px) {
+  .cocktail-page {
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    padding: 25px;
+
+    .cocktail-thumb {
+      width: 100%;
+      height: auto;
+    }
+  }
 }
 </style>

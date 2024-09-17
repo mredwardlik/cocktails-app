@@ -4,10 +4,17 @@ import * as cocktailApi from '../api'
 import { cocktailConfig } from '..'
 
 export const useCocktailStore = defineStore('user', () => {
-  const cocktails = ref<{ [K in cocktailConfig.CocktailCode]?: string }>({})
+  const cocktails = ref<{
+    [K in cocktailConfig.CocktailCode]?: cocktailConfig.CocktailDetail
+  }>({})
 
   async function getCocktailDetail(input: cocktailApi.GetCocktailDetailInput) {
-    return await cocktailApi.getCocktailDetail(input)
+    if (input.cocktailCode in cocktails.value)
+      return cocktails.value[input.cocktailCode]
+    await cocktailApi.getCocktailDetail(input).then((response) => {
+      return (cocktails.value[input.cocktailCode] = response.data.drinks[0])
+    })
+    return cocktails.value[input.cocktailCode]
   }
 
   return {

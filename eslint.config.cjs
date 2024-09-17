@@ -24,12 +24,6 @@ module.exports = [
   ),
   eslintPluginPrettierRecommended,
   {
-    ignores: [
-      'eslint.config.cjs',
-      '.lintstagedrc.cjs',
-      '.prettierrc.cjs',
-      '.stylelintrc.cjs',
-      'types.d.ts',
-    ],
+    ignores: ['*.cjs', 'types.d.ts'],
   },
 ]

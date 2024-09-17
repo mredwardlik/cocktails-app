@@ -18,9 +18,9 @@ export function extractIngredientsAndMeasuresFromCocktailDetail(
         isString(cocktailDetailValue) &&
         !isEmpty(cocktailDetailValue),
     )
-    .map(([, ingredient], i) => {
+    .map(([, ingredient], index) => {
       const measureKey =
-        `${cocktailConfig.cocktailMeasuresKey}${i + 1}` as keyof cocktailConfig.CocktailMeasures
+        `${cocktailConfig.cocktailMeasuresKey}${index + 1}` as keyof cocktailConfig.CocktailMeasures
       const measure = cocktailDetail[measureKey] ?? null
       return [ingredient!, measure]
     })
