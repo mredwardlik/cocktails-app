@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@fontsource/poppins": "^5.1.0",
@@ -22,6 +23,7 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-vue": "^9.28.0",
+    "husky": "^9.1.6",
     "prettier": "^3.3.3",
     "sass": "^1.78.0",
     "stylelint-config-standard-scss": "^13.1.0",
