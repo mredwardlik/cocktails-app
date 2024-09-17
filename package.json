@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "prepare": "husky install"
+    "prepare": "husky || true"
   },
   "dependencies": {
     "@fontsource/poppins": "^5.1.0",
